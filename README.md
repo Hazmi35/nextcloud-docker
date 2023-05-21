@@ -1,5 +1,11 @@
 # nextcloud-docker
-docker.io/library/nextcloud:latest but with some additional packages
+Nextcloud Official Container Image but with some additional packages
+
+Available on [Docker Hub](https://hub.docker.com/r/hazmi35/nextcloud) and [GitHub Container Registry](https://github.com/Hazmi35/nextcloud-docker/pkgs/container/nextcloud)!
+
+## Current changes:
+- static ffmpeg binary installed, can be used for previews
+- bz2 and smbclient php module installed
 
 ## ffmpeg previews
 To enable ffmpeg previews, add this to your config.php file.
