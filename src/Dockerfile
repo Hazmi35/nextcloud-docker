@@ -1,4 +1,3 @@
-
 # TAGS: latest
 # VARIANT:
 # PLATFORMS: linux/amd64, linux/arm64
