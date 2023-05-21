@@ -12,6 +12,10 @@ on:
     paths:
       - "src/Dockerfile"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   workdirs:
     uses: ./.github/workflows/specify-workdir.yml
