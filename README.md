@@ -1,4 +1,4 @@
-# nextcloud
+# nextcloud-docker
 docker.io/library/nextcloud:latest but with some additional packages
 
 ## ffmpeg previews
