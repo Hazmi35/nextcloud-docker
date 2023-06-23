@@ -7,5 +7,8 @@
             "matchPackageNames": ["nextcloud"],
             "versioning": "semver"
         }
-    ]
+    ],
+    "major": false,
+    "minor": true,
+    "patch": true
 }
