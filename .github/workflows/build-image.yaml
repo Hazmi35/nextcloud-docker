@@ -18,12 +18,12 @@ permissions:
 
 jobs:
   workdirs:
-    uses: ./.github/workflows/specify-workdir.yml
+    uses: ./.github/workflows/specify-workdir.yaml
     with:
       base-dir: src
 
   image:
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/build.yaml
     needs: workdirs
     with:
       workdirs: ${{ needs.workdirs.outputs.workdirs-array }}
