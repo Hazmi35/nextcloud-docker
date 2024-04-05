@@ -4,8 +4,8 @@
 FROM docker.io/library/nextcloud:26.0.13
 
 # Install static build ffmpeg
-COPY --from=docker.io/mwader/static-ffmpeg:6.1 /ffmpeg /usr/local/bin/
-COPY --from=docker.io/mwader/static-ffmpeg:6.1 /ffprobe /usr/local/bin/
+COPY --from=docker.io/mwader/static-ffmpeg:7.0 /ffmpeg /usr/local/bin/
+COPY --from=docker.io/mwader/static-ffmpeg:7.0 /ffprobe /usr/local/bin/
 
 # Install bz2 and smbclient php module
 RUN apt-get update -y \
