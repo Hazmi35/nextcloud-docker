@@ -4,7 +4,7 @@
     "packageRules": [
         {
             "matchDatasources": ["docker"],
-            "matchPackageNames": ["nextcloud"],
+            "matchPackageNames": ["docker.io/library/nextcloud", "nextcloud"],
             "versioning": "semver"
         }
     ],
