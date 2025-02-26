@@ -1,14 +1,27 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["github>kakushindev/renovate-config"],
+    "extends": [
+        "github>kakushindev/renovate-config"
+    ],
     "packageRules": [
         {
-            "matchDatasources": ["docker"],
-            "matchPackageNames": ["docker.io/library/nextcloud", "nextcloud"],
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchPackageNames": [
+                "docker.io/library/nextcloud",
+                "nextcloud"
+            ],
             "versioning": "semver"
         }
     ],
-    "major": false,
-    "minor": true,
-    "patch": true
+    "major": {
+        "enabled": false
+    },
+    "minor": {
+        "enabled": true
+    },
+    "patch": {
+        "enabled": true
+    }
 }
