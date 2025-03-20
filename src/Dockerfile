@@ -1,7 +1,7 @@
 # TAGS: latest
 # VARIANT:
 # PLATFORMS: linux/amd64, linux/arm64
-FROM docker.io/library/nextcloud:31.0.1
+FROM docker.io/library/nextcloud:31.0.2
 
 # Install static build ffmpeg
 COPY --from=docker.io/mwader/static-ffmpeg:7.1 /ffmpeg /usr/local/bin/
