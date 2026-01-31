@@ -44,8 +44,8 @@ jobs:
         run: |
           dockerfile="${{ inputs.dockerfile-path }}"
 
-          # Extract version from FROM statement
-          from_version=$(grep "^FROM" "$dockerfile" | sed -n 's/.*:\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p')
+          # Extract version from FROM statement (handle @sha256 suffix)
+          from_version=$(grep "^FROM" "$dockerfile" | sed -n 's/.*:\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\)[@].*/\1/p')
 
           # Extract platforms from Dockerfile comments
           platforms=$(grep "^# PLATFORMS:" "$dockerfile" | sed 's/^# PLATFORMS: //' | tr ',' '\n' | sed 's/^[ \t]*//;s/[ \t]*$//' | tr '\n' ',' | sed 's/,$//')
@@ -55,19 +55,27 @@ jobs:
             platforms="linux/amd64,linux/arm64"
           fi
 
+          # Debug output
+          echo "Extracted version: $from_version"
+          echo "Extracted platforms: $platforms"
+
           # Create version-based tags if we found a version
           if [ -n "$from_version" ]; then
             major_minor_patch="$from_version"
             major_minor=$(echo "$from_version" | cut -d'.' -f1-2)
             major=$(echo "$from_version" | cut -d'.' -f1)
 
-            echo "full-version=$major_minor_patch" >> $GITHUB_OUTPUT
-            echo "major-minor=$major_minor" >> $GITHUB_OUTPUT
-            echo "major=$major" >> $GITHUB_OUTPUT
+            echo "full-version=$major_minor_patch" >> "$GITHUB_OUTPUT"
+            echo "major-minor=$major_minor" >> "$GITHUB_OUTPUT"
+            echo "major=$major" >> "$GITHUB_OUTPUT"
+          else
+            echo "full-version=" >> "$GITHUB_OUTPUT"
+            echo "major-minor=" >> "$GITHUB_OUTPUT"
+            echo "major=" >> "$GITHUB_OUTPUT"
           fi
 
-          echo "platforms=$platforms" >> $GITHUB_OUTPUT
-          echo "version=$from_version" >> $GITHUB_OUTPUT
+          echo "platforms=$platforms" >> "$GITHUB_OUTPUT"
+          echo "version=$from_version" >> "$GITHUB_OUTPUT"
 
       - name: Generate Docker image metadata
         uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
