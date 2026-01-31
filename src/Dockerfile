@@ -1,6 +1,8 @@
 # TAGS: latest
 # PLATFORMS: linux/amd64, linux/arm64
-FROM docker.io/library/nextcloud:32.0.5@sha256:11a3a4f63bad8813c7455b4a3c473ccd1c41e2c48f55decb51718f15691e7568 AS builder
+FROM docker.io/library/nextcloud:32.0.5@sha256:11a3a4f63bad8813c7455b4a3c473ccd1c41e2c48f55decb51718f15691e7568 AS base
+
+FROM base AS builder
 
 # Install build dependencies and compile PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-enable smbclient \
     && rm -rf /var/lib/apt/lists/*
 
-FROM docker.io/library/nextcloud:32.0.5@sha256:11a3a4f63bad8813c7455b4a3c473ccd1c41e2c48f55decb51718f15691e7568 AS final
+FROM base AS final
 
 # Copy static ffmpeg binaries from a specific, verified source.
 COPY --from=docker.io/mwader/static-ffmpeg:7.1@sha256:a8090df5f5608daef387e1b2e93b98aaacb4d92153ad904e7d715c725724fca4 /ffmpeg /usr/local/bin/
