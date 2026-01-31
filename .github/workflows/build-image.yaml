@@ -6,11 +6,13 @@ on:
       - master
     paths:
       - "src/Dockerfile"
+      - "./github/workflows/**"
   pull_request:
     branches:
       - master
     paths:
       - "src/Dockerfile"
+      - "./github/workflows/**"
 
 permissions:
   contents: read
