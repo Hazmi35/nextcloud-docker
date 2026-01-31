@@ -17,16 +17,10 @@ permissions:
   packages: write
 
 jobs:
-  workdirs:
-    uses: ./.github/workflows/specify-workdir.yaml
-    with:
-      base-dir: src
-
-  image:
+  build:
     uses: ./.github/workflows/build.yaml
-    needs: workdirs
     with:
-      workdirs: ${{ needs.workdirs.outputs.workdirs-array }}
+      dockerfile-path: src/Dockerfile
       images: |
         docker.io/hazmi35/nextcloud
         ghcr.io/hazmi35/nextcloud
