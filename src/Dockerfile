@@ -1,6 +1,6 @@
 # TAGS: latest
 # PLATFORMS: linux/amd64, linux/arm64
-FROM docker.io/library/nextcloud:35.0.2@sha256:3f05f4d5eded9d3d029e617926500645cca6344710364737a374088f6811095a AS base
+FROM docker.io/library/nextcloud:35.0.2@sha256:e0b1a2af52c82c07b7a0e8e59878bd8769e704447734d5d238a836982f51b9c8 AS base
 
 FROM base AS builder
 
